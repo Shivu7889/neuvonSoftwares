@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Yummygum Design System - Ultra-clean, minimal aesthetic */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --background: 35 20% 98%;
+    --foreground: 0 0% 8%;
+
+    /* Typography Hierarchy */
+    --text-primary: 0 0% 8%;
+    --text-secondary: 0 0% 35%;
+    --text-muted: 0 0% 60%;
+
+    /* Surface Colors */
+    --surface: 0 0% 100%;
+    --surface-soft: 35 15% 96%;
+    --surface-accent: 35 25% 94%;
+
+    /* Interactive Elements */
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 0 0% 15%;
+
+    /* Accent Colors */
+    --accent-pink: 320 45% 85%;
+    --accent-pink-hover: 320 50% 80%;
+    --accent-yellow: 45 95% 88%;
+    --accent-blue: 210 45% 88%;
+
+    /* Borders & Inputs */
+    --border: 0 0% 88%;
+    --border-soft: 0 0% 92%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 20%;
+
+    /* Component Specific */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --radius: 0.75rem;
+
+    /* Animations & Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --shadow-subtle: 0 2px 8px -2px hsl(0 0% 0% / 0.05);
+    --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.1);
+    --shadow-large: 0 8px 32px -8px hsl(0 0% 0% / 0.15);
+  }
+
+  /* No dark mode for this design - keeping it clean and minimal */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography Hierarchy */
+  .text-hero {
+    @apply text-5xl md:text-7xl lg:text-8xl font-light tracking-wide leading-none;
+    letter-spacing: 0.05em;
+  }
+
+  .text-headline {
+    @apply text-3xl md:text-4xl lg:text-5xl font-medium tracking-wide;
+    letter-spacing: 0.02em;
+  }
+
+  .text-subheadline {
+    @apply text-xl md:text-2xl font-normal text-secondary;
+    letter-spacing: 0.01em;
+  }
+
+  .text-body-large {
+    @apply text-lg md:text-xl leading-relaxed text-secondary;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed text-secondary;
+  }
+
+  .text-small {
+    @apply text-sm text-muted;
+  }
+
+  /* Layout Components */
+  .container-wide {
+    @apply mx-auto px-6 md:px-12 lg:px-20 xl:px-24;
+    max-width: 1400px;
+  }
+
+  .container-narrow {
+    @apply mx-auto px-6 md:px-12;
+    max-width: 900px;
+  }
+
+  /* Interactive Elements */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-8 py-4 rounded-full font-medium 
+           hover:bg-primary-hover transition-all duration-300 hover:scale-105 
+           hover:shadow-medium;
+  }
+
+  .btn-secondary {
+    @apply bg-accent-pink text-primary px-8 py-4 rounded-full font-medium 
+           hover:bg-accent-pink-hover transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-ghost {
+    @apply text-primary hover:text-primary-hover transition-colors duration-300 
+           hover:underline underline-offset-4;
+  }
+
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  /* Project Cards */
+  .project-card {
+    @apply relative overflow-hidden rounded-2xl bg-surface hover:shadow-large 
+           transition-all duration-500 hover:scale-[1.02];
+  }
+
+  .project-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-accent-pink/20 to-accent-blue/20 
+           opacity-0 transition-opacity duration-300;
+  }
+
+  .group:hover .project-card::before {
+    @apply opacity-100;
+  }
+
+  /* Client Logos */
+  .client-logo {
+    @apply opacity-40 hover:opacity-100 transition-opacity duration-300 
+           grayscale hover:grayscale-0;
+  }
+}
